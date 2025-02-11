@@ -1,6 +1,6 @@
 *{
-    margin: 0;
-    padding: 0;
+    margin: 1%;
+    padding: 1%;
     box-sizing: border-box;
 }
 
@@ -26,12 +26,79 @@ body{
     background-color: #ebb9c9;
     color: #fff;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 0%;
+    margin: 0%;
+    padding: 0%;
 
 }
 .Botones{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    height: 400px;
+    width: 200px;
+}
+
+#rojo{
+    background-color: #f44336;
+    color: #f44336;
+   /* padding: 0.5rem 0.5rem;
+    margin: 0.5rem;*/
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 15px;
+    height: 150px;
+    width: 300px;
+}
+#verde{
+    background-color: #4caf50;
+    color: #4caf50;
+   /* padding: 0.5rem 0.5rem;
+    margin: 0.5rem;*/
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 15px;
+    height: 150px;
+    width: 300px;
+}
+#azul{
+    background-color: #2196f3;
+    color: #2196f3;
+    /*padding: 0.5rem 0.5rem;
+    margin: 0.5rem;*/
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 15px;
+    height: 150px;
+    width: 300px;
+}
+#amarillo{
+    background-color: #ffeb3b;
+    color: #ffeb3b;
+   /* padding: 0.5rem 0.5rem;
+    margin: 0.5rem;*/
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 15px;
+    height: 150px;
+    width: 300px;
+}
+#instrucciones{
+    background-color: #f0ccde;
+    color: #131212;
+    border: 1px solid #131212;
+    height: 50px;
+    width: 150px;
+}
+#score{
+    background-color: #f0ccde;
+    color: #131212;
+    border: 1px solid #131212;
+    height: 50px;
+    width: 150px;
+
 }

@@ -4,28 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimonSays - Minigame</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="encabezado">
         <h1>Bienvenido Usuario</h1>
         <h1>SimonSays- Mini Game</h1>
         <h2>Presiona "Jugar" para empezar el juego</h2>
-        <button name="Jugar">Jugar</button>
         <div id="Tiempojuego">
-            <img src="./img/clock_icon-icons.com_54407 (1).svg" alt="Foto reloj">
+            <img src="./img/clock_icon-icons.com_54407 (1).svg" alt="Foto reloj"> 
             <h2 id="TimerDisplay">Time=2s</h2> 
         </div>
+        <button name="Jugar">Jugar</button>
 
     </div>
     <div class="Botones">
         <div class="Primeralinea">
-            <button name="Botonrojo">Botonrojo</button>
-            <button name="Botonazul">Botonazul</button>
-
+            <button name="Botonrojo"id="rojo">Botonrojo</button>
+            <button name="Botonazul"id="azul">Botonazul</button>
+        </div>
+        <br>
+        <div class="Segundalinea">
+            <button name="Botonverde" id="verde">Botonverde</button>
+            <button name="Botonamarillo"id="amarillo">Botonamarillo</button>
+        </div>
+    </div>
+        <br>
+        <div class="Botonesadicionales">
+            <button name="ComoJugar"id="instrucciones">Comojugar</button>
+            <br>
+            <button name="Ver Score"id="score">Score</button>
         </div>
 
-
-    </div>
+    
     
 </body>
 </html>
