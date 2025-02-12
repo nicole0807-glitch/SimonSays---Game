@@ -60,6 +60,10 @@ body{
     margin-bottom: 20px;
     margin-top: 20px;
 }
+.Boton:active,
+.Boton.active {
+    filter: brightness(200%);
+}
 
 #rojo{
     background-color: #f44336;
