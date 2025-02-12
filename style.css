@@ -12,9 +12,8 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    margin: 0;
-}  
+}
+ 
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
@@ -29,6 +28,7 @@ body{
     height: 100vh;
 
 }
+
 .encabezado{
     background-color: #ebb9c9;
     color: #fff;
@@ -44,13 +44,21 @@ body{
     height: 30px;
     width: 125px;
     border: 1px grandient #6e123d;
+    box-shadow: 0 2px #999;
 }
+#botonjugar:hover {
+    background-color: #df83c3; 
+  }
 .Botones{
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
-    width: 200px;
+    height: auto;
+    width: auto;
+    display: inline-grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #rojo{
@@ -62,8 +70,12 @@ body{
     cursor: pointer;
     font-size: 1.6rem;
     border-radius: 15px;
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 2px #999;
+}
+#rojo:hover {
+    background-color: #ec2112;
 }
 #verde{
     background-color: #4caf50;
@@ -74,8 +86,12 @@ body{
     cursor: pointer;
     font-size: 1.6rem;
     border-radius: 15px;
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 2px #999;
+}
+#verde:hover {
+    background-color: #48f04e;
 }
 #azul{
     background-color: #2196f3;
@@ -86,8 +102,12 @@ body{
     cursor: pointer;
     font-size: 1.6rem;
     border-radius: 15px;
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 2px #999;
+}
+#azul:hover {
+    background-color: #4ea6f3;
 }
 #amarillo{
     background-color: #ffeb3b;
@@ -98,23 +118,46 @@ body{
     cursor: pointer;
     font-size: 1.6rem;
     border-radius: 15px;
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
+    box-shadow: 0 2px #999;
 }
+#amarillo:hover {
+    background-color: #fcf966;
+}
+.Botonesadcionales{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre los botones adicionales */
+    margin-top: 20px; /* Agregar margen superior */
+}
+
 #instrucciones{
-    background-color: #f0ccde;
+    background-color: #f36eb0;
     color: #131212;
     border: 1px solid #131212;
     border-radius: 15px;
     height: 50px;
     width: 150px;
+    box-shadow: 0 2px #999;
+}
+#instrucciones:hover{
+    background-color: #f0ccde;
 }
 #score{
-    background-color: #f0ccde;
+    background-color: #f36eb0;
     color: #131212;
     border-radius: 15px;
     border: 1px solid #131212;
     height: 50px;
     width: 150px;
-
+    box-shadow: 0 2px #999;
 }
+#score:hover{
+    background-color: #f0ccde;
+}
+
+
+/* Ahora vamos a darle estilo a la ventana modal (login)*/
+

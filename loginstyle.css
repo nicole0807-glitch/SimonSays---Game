@@ -1,0 +1,82 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    background: linear-gradient(150deg, #d67795, #e6e3e4);
+    justify-content: center;
+    align-items: center;
+ 
+}
+.Registro{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 10px;
+    height: 300px;
+}
+.Registro h1{
+    text-align: center;
+    padding: 0 0 5px;
+    padding-top: 10px;
+    margin: 0%;
+}
+.Registro h2{
+    text-align: center;
+    margin: 0%;
+    padding: 5px 0;
+    padding-bottom: 10px;
+    color: #d67795;
+    border-bottom: 1px solid silver;
+}
+.Registro form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+form .username{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 20px 5px;
+    top: 15px;
+
+}
+.username input{
+    width: 97%;
+    padding: 0 0px;
+    height: 40px;
+    font-size: 16px;
+    background: #fffffff3;
+    border: none;
+}
+
+.username .instruccion{
+    position: absolute;
+    top: 36px;
+    left: 0px;
+    font-size: 16px;
+    color: #a5a4a4e8;
+    pointer-events: none;
+}
+.username label[for="username"]{
+    position: relative;
+    top: 10px;
+    left: 0px;
+    font-size: 16px;
+    color: #050505e8;
+}
+form input[type="submit"]{
+    position: relative;
+    width: 50%;
+    padding: 5px;
+    margin: 30px 0;
+    border-radius: 5px;
+    border: 2px solid #e993cf;
+    background-color: #ecabbf;
+    left: 25%;
+}
+form input[type="submit"]:hover {
+    background-color: #d67795;
+}
