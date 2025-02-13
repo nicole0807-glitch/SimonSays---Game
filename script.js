@@ -7,6 +7,7 @@ const botonInicio = document.getElementById('botonjugar');
 class SimonSays{
     constructor(botonesJuego, botonInicio, round){
         this.round = 0;
+        this.score = 0;
         this.totalRounds = 10;
         this.posicionUsuario = 0;
         this.secuencia = [];
@@ -29,6 +30,7 @@ class SimonSays{
 
     init(){
         this.display.botonInicio.onclick = () => this.comenzarJuego();
+        this.mostrarPuntaje();
     }
     
     //Comienza el juego
@@ -67,6 +69,8 @@ class SimonSays{
         if(this.secuencia[this.posicionUsuario]=== valor){
            this.sonidoBoton[valor].play(); // para que suene el boton cuando este bien la respuesta
             if(this.round === this.posicionUsuario){
+                this.actualizarScore();
+                this.mostrarPuntaje();
                 this.actualizarRound(this.round + 1);
                 this.speed /= 1.02;
                 this.isjuegoPerdido();
@@ -121,6 +125,18 @@ class SimonSays{
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
         this.botones.forEach(element => { element.classList.add("ganador")});
+    }
+
+    actualizarScore(){
+        let puntajeActual = localStorage.getItem('puntaje') || 0;
+        puntajeActual = parseInt(puntajeActual) + 1;
+        localStorage.setItem('puntaje', puntajeActual);
+    }
+
+    //agregar al html el puntaje
+    mostrarPuntaje(){
+        const puntaje = localStorage.getItem('puntaje') || 0;
+        this.display.puntaje.textContent = `Puntaje: ${puntaje}`;
     }
 
 }
