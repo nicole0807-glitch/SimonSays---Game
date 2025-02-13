@@ -1,7 +1,7 @@
 "use strict";
-const round = document.getElementById("round");
-const botonesJuego = document.querySelectorAll(".Botones boton");
-const botonInicio = document.getElementById("botonjugar");
+const round = document.getElementById('round');
+const botonesJuego = document.getElementsByClassName('Boton');
+const botonInicio = document.getElementById('botonjugar');
 
 
 class SimonSays{
@@ -17,7 +17,13 @@ class SimonSays{
             botonInicio,
             round
         }
-        //aca agregar las instancias de sonido
+        this.sonidoError = new Audio('./sounds/error.wav');
+        this.sonidoBoton = [
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3')
+        ];
         }
 
     init(){
@@ -27,13 +33,14 @@ class SimonSays{
     //Comienza el juego
     comenzarJuego(){
         this.display.botonInicio.disabled = true;
-        this.actualizarRound(0);
+        this.actualizarRound(1);
         this.posicionUsuario = 0;
         this.secuencia = this.generarSecuencia();
         this.botones.forEach((element, i) => {
-            element.classList.remove("ganador");
+            element.classList.remove('ganador');
             element.onclick = () => this.clickBoton(i);
         });
+        this.mostrarSecuencia();
     }
 
     //Actualiza el valor de Round a medida que se avanza y se muestra en pantalla
@@ -56,14 +63,14 @@ class SimonSays{
     }
 
     validarColor(valor){
-        if(this.secuencia[this.posicion]=== valor){
+        if(this.secuencia[this.posicionUsuario]=== valor){
             this.sonidoBoton[valor].play(); // para que suene el boton cuando este bien la respuesta
             if(this.round === this.posicionUsuario){
                 this.actualizarRound(this.round + 1);
                 this.speed /= 1.02;
                 this.isjuegoPerdido();
             } else {
-                this.posicion++;
+                this.posicionUsuario++;
             }
         } else {
             this.juegoPerdido();
@@ -74,7 +81,7 @@ class SimonSays{
         if(this.round === this.totalRounds){
             this.juegoGanado();
         } else {
-            this.posicion = 0;
+            this.posicionUsuario = 0;
             this.mostrarSecuencia();
         };
     }
@@ -85,7 +92,7 @@ class SimonSays{
         let indexSecuencia = 0;
         let temporizador = setInterval(() => {
             const boton = this.botones[this.secuencia[indexSecuencia]];
-            this.sonidoBoton[this.secuencia[indexSecuencia]].play();//para que suene el boton
+            /*this.sonidoBoton[this.secuencia[indexSecuencia]].play();//para que suene el boton*/
             this.altenarBotones(boton);
             setTimeout(() => this.altenarBotones(boton), this.velocidad / 2);
             indexSecuencia++;
@@ -98,12 +105,12 @@ class SimonSays{
 
     //revisar
     altenarBotones(boton){
-        boton.classList.toggle("active"); //para que se vea el cambio de color osea que hay que acomodar en el css
+        boton.classList.toggle('active'); //para que se vea el cambio de color osea que hay que acomodar en el css
     }
 
     //revisar porque hay que agregar los sonidos
     juegoPerdido(){
-        this.SonidoError.play();
+        this.sonidoError.play();
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
     }
