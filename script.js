@@ -17,7 +17,13 @@ class SimonSays{
             botonInicio,
             round
         }
-        //aca agregar las instancias de sonido
+        this.sonidoError = new Audio('./sounds/error.wav');
+        this.sonidoBoton = [
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3'),
+            new Audio('./sounds/boton.mp3')
+        ];
         }
 
     init(){
@@ -27,7 +33,7 @@ class SimonSays{
     //Comienza el juego
     comenzarJuego(){
         this.display.botonInicio.disabled = true;
-        this.actualizarRound(0);
+        this.actualizarRound(1);
         this.posicionUsuario = 0;
         this.secuencia = this.generarSecuencia();
         this.botones.forEach((element, i) => {
@@ -104,7 +110,7 @@ class SimonSays{
 
     //revisar porque hay que agregar los sonidos
     juegoPerdido(){
-        this.SonidoError.play();
+        this.sonidoError.play();
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
     }
