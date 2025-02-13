@@ -10,14 +10,24 @@
     <div class="Registro">
         <h1>Simon Says </h1>
         <h2>Mini Game</h2>
-        <form method="post">
+        <form id="registroForm" method="post">
             <div class="username">
                 <label for="username">Username:</label> 
-                <label for="instruccion" class="instruccion">Ingresa tu nombre aqui</label> 
+               <!--<label for="instruccion" class="instruccion">Ingresa tu nombre aqui</label> --> 
                 <input type="text" id="username" required>
             </div>
             <input type="submit" value="Jugar">
         </form>
     </div>
+    <script>
+        constformulario = document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            localStorage.setItem('username', username);
+            window.location.href = 'index.html';
+        });
+
+    </script>
+  
 </body>
 </html>
