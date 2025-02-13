@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="encabezado">
-        <h1>Bienvenido Usuario</h1>
+        <h1>Bienvenido <a href="login.html">Usuario</a></h1>
         <h1>SimonSays- Mini Game</h1>
         <h2>Presiona "Jugar" para empezar el juego</h2>
         <h2>Round: <span data-round="0">0</span></h2>
@@ -36,8 +36,10 @@
             <h2 id="TimerDisplay">Time=2s</h2> 
             <div id="round"></div>
         </div>
+
         <button id="botonjugar">Jugar</button>
     </div>
+    
     <div class="Botones">
             <div class="Boton rojo"id="rojo">1</div>
             <div class="Boton azul"id="azul">2</div>
@@ -50,7 +52,51 @@
         <br>
         <button name="Ver Score"id="score">Score</button>
     </div>  
+
+    <dialog id="modalUsuario" class = "modal">
+        <div class="modal-content">
+            <h2>Ingresa tu nombre</h2>
+            <form method="dialog">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                    <button id="guardar">Guardar</button>
+            </form>
+        </div>
+    </dialog>
+
+    <dialog id="modalInstrucciones" class="modal">
+        <div class="modal-content">
+            <h2>Instrucciones del Juego</h2>
+            <p>Simon Says es un juego de memoria, 
+                en el cual el jugador debe recordar la secuencia de colores que se le muestra en pantalla. 
+                El juego empieza con una secuencia de un color, y el jugador debe repetirlo. 
+                Cada vez que el jugador acierta, la secuencia se alarga en un color más.
+                El juego termina cuando el jugador se equivoca en la secuencia.</p>
+                <button id ="cerrarInstrucciones">cerrar</button>
+        </div>
+    </dialog>
+
+    <dialog id="modalScore" class="modal">
+        <div class="modal-content">
+            <h2>Score</h2>
+            <p>Puntuaciones recientes</p>
+            <table id="tablaScore">
+                <thead>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+            </table>
+            <button id ="cerrarScore">cerrar</button>
+        </div>
+    </dialog>
+
     <script src="script.js"></script>
+    <script src="modal.js"></script>
 
 </body>
 </html>

@@ -70,7 +70,8 @@ class SimonSays{
            this.sonidoBoton[valor].play(); // para que suene el boton cuando este bien la respuesta
             if(this.round === this.posicionUsuario){
                 this.actualizarScore();
-                this.mostrarPuntaje();
+                //this.mostrarPuntaje(); //esta comentado porque aun no esta bien programado 
+                // e impide el buen funcionamiento del juego !!arreglar!!
                 this.actualizarRound(this.round + 1);
                 this.speed /= 1.02;
                 this.isjuegoPerdido();
