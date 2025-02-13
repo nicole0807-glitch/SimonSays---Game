@@ -11,7 +11,7 @@ const btnCerrarScore = document.getElementById('cerrarScore');
 
 const modalUsuario = document.getElementById('modalUsuario');
 const btnGuardar = document.getElementById('guardar');
-
+const btnJugar = document.getElementById('instrucciones');
 
 
 

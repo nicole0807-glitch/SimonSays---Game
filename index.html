@@ -27,17 +27,18 @@
 </head>
 <body>
     <div class="encabezado">
-        <h1>Bienvenido <a href="login.html">Usuario</a></h1>
-        <h1>SimonSays- Mini Game</h1>
-        <h2>Presiona "Jugar" para empezar el juego</h2>
-        <h2>Round: <span data-round="0">0</span></h2>
+        <h1 id="nombreUsuario"></h1>
+        <a href="login.html"><button id="Cambiarusuario"><b>Cambiar Usuario</b></button></a>
+        <h2>SimonSays- Mini Game</h2>
+        <h3>Presiona "Jugar" para empezar el juego</h3>
+        <h3>Round: <span id="valorronda"data-round="0">0</span></h3>
         <div id="Tiempojuego">
             <img src="./img/clock_icon-icons.com_54407 (1).svg" id="Timericon"alt="Foto reloj"> 
-            <h2 id="TimerDisplay">Time=2s</h2> 
-            <div id="round"></div>
+            <h3 id="TimerDisplay">Time=2s</h3> 
         </div>
-
-        <button id="botonjugar">Jugar</button>
+            <button id="botonjugar"><b>Jugar</b></button>
+        </div>
+        
     </div>
     
     <div class="Botones">
@@ -67,14 +68,17 @@
     <dialog id="modalInstrucciones" class="modal">
         <div class="modal-content">
             <h2>Instrucciones del Juego</h2>
-            <p>Simon Says es un juego de memoria, 
-                en el cual el jugador debe recordar la secuencia de colores que se le muestra en pantalla. 
-                El juego empieza con una secuencia de un color, y el jugador debe repetirlo. 
-                Cada vez que el jugador acierta, la secuencia se alarga en un color más.
-                El juego termina cuando el jugador se equivoca en la secuencia.</p>
-                <button id ="cerrarInstrucciones">cerrar</button>
+            <p><b>Simon Says</b> es un desafío de memoria en el que el jugador debe memorizar
+                y repetir una secuencia de colores que se muestra en pantalla.
+                Al inicio, la secuencia consta de un único color, y el jugador debe 
+                replicarla de manera precisa. Cada vez que el jugador acierta, 
+                la secuencia se extiende agregando un nuevo color, incrementando 
+                así el nivel de dificultad. El juego concluye cuando el jugador 
+                falla al reproducir la secuencia correctamente.</p>
+                <button id ="cerrarInstrucciones">Cerrar</button>
         </div>
     </dialog>
+    <button id="reiniciar juego">Reiniciar</button>
 
     <dialog id="modalScore" class="modal">
         <div class="modal-content">
@@ -97,6 +101,18 @@
 
     <script src="script.js"></script>
     <script src="modal.js"></script>
+    <script>
+        // Obtén el nombre de usuario de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+
+        // Muestra el nombre de usuario en la página
+        if (username) {
+            document.getElementById('nombreUsuario').textContent = `Bienvenido ${username}`;
+        } else {
+            document.getElementById('nombreUsuario').textContent = 'Jugador: Anónimo';
+        }
+    </script>
 
 </body>
 </html>

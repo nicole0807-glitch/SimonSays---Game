@@ -1,5 +1,5 @@
 *{
-    margin: 1%;
+    margin: 0%;
     padding: 0%;
     box-sizing: border-box;
 }
@@ -33,18 +33,53 @@ body{
     background-color: #ebb9c9;
     color: #fff;
     width: 100%;
-    margin-bottom: 0%;
-    margin: 0%;
-    padding: 0%;
-
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+   
 }
+#nombreUsuario{
+    margin-right: 10px; 
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 250%;
+    margin-top: 2%;
+
+    
+}
+#Cambiarusuario{
+    background-color: #d168ae;
+    color: rgb(7, 7, 7);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    margin-top: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: 1px solid #6e123d;
+    box-shadow: 0 2px #999;
+}
+#Cambiarusuario:hover {
+    background-color: #df83c3;
+}
+
 #botonjugar{
     border-radius: 15px;
     background-color: #d168ae;
     height: 30px;
     width: 125px;
-    border: 1px grandient #6e123d;
+    border: 1px solid #6e123d;
     box-shadow: 0 2px #999;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
 }
 #botonjugar:hover {
     background-color: #df83c3; 
@@ -145,6 +180,7 @@ body{
     height: 50px;
     width: 150px;
     box-shadow: 0 2px #999;
+
 }
 #instrucciones:hover{
     background-color: #f0ccde;
@@ -160,6 +196,41 @@ body{
 }
 #score:hover{
     background-color: #f0ccde;
+}
+.modal{
+    position: absolute;
+    width: 600px;
+    height: 260px;
+    margin: auto;
+
+}
+.modal-content {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    flex-direction: column;  /* Alinea los elementos en columna */
+}
+.modal-content h2{
+    background-color:#ebb9c9;
+    color: #0c0c0c;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+.modal-content p{
+    text-align: justify;
+    color: #0a0a0a;
+    margin-inline: 15px;
+}
+.modal-content button{
+    background-color: #d67795;
+    color: #080808;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    width: 90px;
+    margin-top: 10px;
 }
 
 
