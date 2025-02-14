@@ -3,23 +3,26 @@
 const round1= document.getElementById('valorronda');
 const botonesJuego = document.getElementsByClassName('Boton');
 const botonInicio = document.getElementById('botonjugar');
+const botonReiniciar = document.getElementById('reiniciarJuego');
+const nombreUsuario = document.getElementById('username');
 
 
 class SimonSays{
-    constructor(botonesJuego, botonInicio, round1){
-       /* this.round = 0;*/
+    constructor(botonesJuego, botonInicio, round1, botonReiniciar){
         this.round1 = 0;
         this.score = 0;
         this.totalRounds = 10;
         this.posicionUsuario = 0;
         this.secuencia = [];
+        this.listascore = [];
         this.botones = Array.from(botonesJuego);
         this.botonesBloqueados = true;
         this.velocidad = 1000;
         this.display = {
             botonInicio,
-            round1
-        }
+            round1,
+            botonReiniciar
+        };
         this.valorRondaElement = round1;
         this.sonidoError = new Audio('./sounds/error.wav');
         this.sonidoBoton = [
@@ -33,7 +36,7 @@ class SimonSays{
 
     init(){
         this.display.botonInicio.onclick = () => this.comenzarJuego();
-       /* this.mostrarPuntaje();*/
+        this.display.botonReiniciar.onclick = () => this.reiniciarJuego();
     }
     
     //Comienza el juego
@@ -49,13 +52,24 @@ class SimonSays{
         this.mostrarSecuencia();
     }
 
-      // Actualiza el valor de Round a medida que se avanza y se muestra en pantalla
+    reiniciarJuego(){
+        this.actualizarRound(0);
+        this.posicionUsuario = 0;
+        this.secuencia = [];
+        this.display.botonInicio.disabled = false;
+        this.botonesBloqueados = true;
+        this.botones.forEach(element => {
+            element.classList.remove('ganador'); 
+            element.onclick = null;
+        })
+        alert("Juego Reiniciado");
+
+    }
+
       actualizarRound(valor) {
-        /* this.round = valor;*/
         this.round1 = valor;
         this.valorRondaElement.textContent = this.round1;
         this.valorRondaElement.setAttribute('data-round', this.round1);
-        /* this.display.round.textContent = `Round ${this.round}`;*/
     }
 
 
@@ -75,9 +89,6 @@ class SimonSays{
         if(this.secuencia[this.posicionUsuario]=== valor){
            this.sonidoBoton[valor].play(); // para que suene el boton cuando este bien la respuesta
             if(this.posicionUsuario === this.round1 - 1){
-                /*this.actualizarScore();*/
-                //this.mostrarPuntaje(); //esta comentado porque aun no esta bien programado 
-                // e impide el buen funcionamiento del juego !!arreglar!!
                 this.actualizarRound(this.round1 + 1);
                 this.velocidad/= 1.02;
                 this.isJuegoPerdido();
@@ -90,12 +101,6 @@ class SimonSays{
     }
 
     isJuegoPerdido(){
-     /*   if(this.round === this.totalRounds){
-            this.juegoGanado();
-        } else {
-            this.posicionUsuario = 0;
-            this.mostrarSecuencia();
-    }*/
         if(this.round1 === this.totalRounds){
             this.juegoGanado();
         } else {
@@ -104,7 +109,6 @@ class SimonSays{
         };
     }
 
-    //revisar
     mostrarSecuencia(){
         this.botonesBloqueados = true;
         let indexSecuencia = 0;
@@ -121,23 +125,22 @@ class SimonSays{
             }
         }, this.velocidad);
     }
-           /* if(indexSecuencia > this.round){
-                this.botonesBloqueados = false;
-                clearInterval(temporizador);
-            }
-        }, this.velocidad);*/
 
        
-    //revisar
     altenarBotones(boton){
         boton.classList.toggle('active'); //para que se vea el cambio de color osea que hay que acomodar en el css
     }
 
-    //revisar porque hay que agregar los sonidos
     juegoPerdido(){
         this.sonidoError.play();
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
+        const username = localStorage.getItem('username');
+        const score = this.round1;
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+        listaScore.push({ username: username, score: score });
+        localStorage.setItem('list', JSON.stringify(listaScore));
+        this.actualizarTablaScore();
     }
 
     //revisar clase ganador para que nos funcione para crear lo del score o agregar alguna animacion que indique que gano
@@ -145,20 +148,32 @@ class SimonSays{
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
         this.botones.forEach(element => { element.classList.add("ganador")});
+        this.valorRondaElement.textContent = "¡Ganaste! 🏆";
+        this.valorRondaElement.setAttribute('data-round', "¡Ganaste!🏆");
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+        const username = localStorage.getItem('username');
+        const score = this.round1;
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];         
+        listaScore.push({ username: username, score: score });   
+        localStorage.setItem('list', JSON.stringify(listaScore));   
+        this.actualizarTablaScore();
     }
-
-    /*actualizarScore(){
-        let puntajeActual = localStorage.getItem('puntaje') || 0;
-        puntajeActual = parseInt(puntajeActual) + 1;
-        localStorage.setItem('puntaje', puntajeActual);
-    }*/
-
-    //agregar al html el puntaje
-    /*mostrarPuntaje(){
-        const puntaje = localStorage.getItem('puntaje') || 0;
-        this.display.puntaje.textContent = `Puntaje: ${puntaje}`;
-    }*/
-
-}
-const simon = new SimonSays(botonesJuego, botonInicio, round1);
+    actualizarTablaScore() {
+        
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+        listaScore.sort((a, b) => b.score - a.score);
+    
+        const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
+    
+        listaScore.forEach(item => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `<td>${item.username}</td>    <td>${item.score}</td>`;
+            tablaScore.appendChild(fila);
+        });
+    }}
+const simon = new SimonSays(botonesJuego, botonInicio, round1, botonReiniciar);
 simon.init();

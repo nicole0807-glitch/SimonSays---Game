@@ -5,25 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimonSays - Minigame</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        #Tiempojuego {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    #TimerDisplay {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    #Timericon {
-        width: 25px;
-        height: 25px;
-    }
-
-    </style>
 </head>
 <body>
     <div class="encabezado">
@@ -32,10 +13,6 @@
         <h2>SimonSays- Mini Game</h2>
         <h3>Presiona "Jugar" para empezar el juego</h3>
         <h3>Round: <span id="valorronda"data-round="0">0</span></h3>
-        <div id="Tiempojuego">
-            <img src="./img/clock_icon-icons.com_54407 (1).svg" id="Timericon"alt="Foto reloj"> 
-            <h3 id="TimerDisplay">Time=2s</h3> 
-        </div>
             <button id="botonjugar"><b>Jugar</b></button>
         </div>
         
@@ -47,13 +24,11 @@
             <div class="Boton verde" id="verde">3</div>
             <div class="Boton amarillo"id="amarillo">4</div>
     </div>
-        <br>
     <div class="Botonesadicionales">
         <button name="ComoJugar"id="instrucciones">Como jugar</button>
-        <br>
         <button name="Ver Score"id="score">Score</button>
+        <button id="reiniciarJuego">Reiniciar</button>
     </div>  
-
     <dialog id="modalUsuario" class = "modal">
         <div class="modal-content">
             <h2>Ingresa tu nombre</h2>
@@ -78,18 +53,29 @@
                 <button id ="cerrarInstrucciones">Cerrar</button>
         </div>
     </dialog>
-    <button id="reiniciar juego">Reiniciar</button>
 
     <dialog id="modalScore" class="modal">
         <div class="modal-content">
             <h2>Score</h2>
             <p>Puntuaciones recientes</p>
             <table id="tablaScore">
-                <thead>
-                    <tr>
-                    <th>Nombre</th>
-                    <th>Score</th>
-                    </tr>
+                    <script>
+                        document.getElementById('score').addEventListener('click', () => {
+                                // Recuperar la lista de puntuaciones
+                                const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+                                const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
+                                tablaScore.innerHTML = ''; // Limpiar la tabla antes de actualizar
+
+                                listaScore.forEach(item => {
+                                    const fila = document.createElement('tr');
+                                    fila.innerHTML = `<td>${item.username}</td><td>${item.score}</td>`;
+                                    tablaScore.appendChild(fila);
+                                });
+
+                                // Abrir el modal
+                                document.getElementById('modalScore').showModal();
+                            });
+                    </script>
                 </thead>
                 <tbody>
                 
@@ -101,17 +87,33 @@
 
     <script src="script.js"></script>
     <script src="modal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script>
-        // Obtén el nombre de usuario de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-
+        //Obtén el nombre de usuario de la URL
+        const username = localStorage.getItem('username');
         // Muestra el nombre de usuario en la página
         if (username) {
             document.getElementById('nombreUsuario').textContent = `Bienvenido ${username}`;
         } else {
             document.getElementById('nombreUsuario').textContent = 'Jugador: Anónimo';
         }
+    </script>
+    <script>
+            document.addEventListener('DOMContentLoaded', () => {
+        // Recuperar la lista de puntuaciones
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+        console.log(listaScore); // Muestra la lista en la consola
+
+        // Mostrar la lista en la tabla de puntuaciones
+        const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
+        tablaScore.innerHTML = ''; // Limpiar la tabla antes de actualizar
+
+        listaScore.forEach(item => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `<td>${item.username}</td><td>${item.score}</td>`;
+            tablaScore.appendChild(fila);
+            });
+            });
     </script>
 
 </body>
