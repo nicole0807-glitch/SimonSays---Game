@@ -13,6 +13,8 @@ const modalUsuario = document.getElementById('modalUsuario');
 const btnGuardar = document.getElementById('guardar');
 const btnJugar = document.getElementById('instrucciones');
 
+const btnCerrarModal = document.getElementById('cerrarModal');
+
 
 
 botonInstrucciones.addEventListener('click', function () {
@@ -38,3 +40,5 @@ btnJugar.addEventListener('click', function () {
 btnGuardar.addEventListener('click', function () {
     
 });
+
+

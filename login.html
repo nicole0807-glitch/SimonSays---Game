@@ -20,7 +20,7 @@
         </form>
     </div>
     <script>
-        constformulario = document.getElementById('registroForm').addEventListener('submit', function(event) {
+        const formulario = document.getElementById('registroForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             localStorage.setItem('username', username);

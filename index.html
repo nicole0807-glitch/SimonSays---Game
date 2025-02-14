@@ -78,7 +78,7 @@
                 <button id ="cerrarInstrucciones">Cerrar</button>
         </div>
     </dialog>
-    <button id="reiniciar juego">Reiniciar</button>
+    <button id="reiniciarJuego">Reiniciar</button>
 
     <dialog id="modalScore" class="modal">
         <div class="modal-content">
@@ -101,11 +101,11 @@
 
     <script src="script.js"></script>
     <script src="modal.js"></script>
+    <script src="storage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script>
-        // Obtén el nombre de usuario de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-
+        //Obtén el nombre de usuario de la URL
+        const username = localStorage.getItem('username');
         // Muestra el nombre de usuario en la página
         if (username) {
             document.getElementById('nombreUsuario').textContent = `Bienvenido ${username}`;
