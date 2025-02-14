@@ -4,6 +4,7 @@ const round1= document.getElementById('valorronda');
 const botonesJuego = document.getElementsByClassName('Boton');
 const botonInicio = document.getElementById('botonjugar');
 const botonReiniciar = document.getElementById('reiniciarJuego');
+const nombreUsuario = document.getElementById('username');
 
 
 class SimonSays{
@@ -13,6 +14,7 @@ class SimonSays{
         this.totalRounds = 10;
         this.posicionUsuario = 0;
         this.secuencia = [];
+        this.listascore = [];
         this.botones = Array.from(botonesJuego);
         this.botonesBloqueados = true;
         this.velocidad = 1000;
@@ -50,7 +52,6 @@ class SimonSays{
         this.mostrarSecuencia();
     }
 
-    //probar
     reiniciarJuego(){
         this.actualizarRound(0);
         this.posicionUsuario = 0;
@@ -60,11 +61,11 @@ class SimonSays{
         this.botones.forEach(element => {
             element.classList.remove('ganador'); 
             element.onclick = null;
-        });
+        })
+        alert("Juego Reiniciado");
 
     }
 
-      // Actualiza el valor de Round a medida que se avanza y se muestra en pantalla
       actualizarRound(valor) {
         this.round1 = valor;
         this.valorRondaElement.textContent = this.round1;
@@ -108,7 +109,6 @@ class SimonSays{
         };
     }
 
-    //revisar
     mostrarSecuencia(){
         this.botonesBloqueados = true;
         let indexSecuencia = 0;
@@ -127,16 +127,20 @@ class SimonSays{
     }
 
        
-    //revisar
     altenarBotones(boton){
         boton.classList.toggle('active'); //para que se vea el cambio de color osea que hay que acomodar en el css
     }
 
-    //revisar porque hay que agregar los sonidos
     juegoPerdido(){
         this.sonidoError.play();
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
+        const username = localStorage.getItem('username');
+        const score = this.round1;
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+        listaScore.push({ username: username, score: score });
+        localStorage.setItem('list', JSON.stringify(listaScore));
+        this.actualizarTablaScore();
     }
 
     //revisar clase ganador para que nos funcione para crear lo del score o agregar alguna animacion que indique que gano
@@ -151,8 +155,25 @@ class SimonSays{
             spread: 70,
             origin: { y: 0.6 }
         });
+        const username = localStorage.getItem('username');
+        const score = this.round1;
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];         
+        listaScore.push({ username: username, score: score });   
+        localStorage.setItem('list', JSON.stringify(listaScore));   
+        this.actualizarTablaScore();
     }
-}
-
+    actualizarTablaScore() {
+        
+        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+        listaScore.sort((a, b) => b.score - a.score);
+    
+        const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
+    
+        listaScore.forEach(item => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `<td>${item.username}</td>    <td>${item.score}</td>`;
+            tablaScore.appendChild(fila);
+        });
+    }}
 const simon = new SimonSays(botonesJuego, botonInicio, round1, botonReiniciar);
 simon.init();

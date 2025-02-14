@@ -164,15 +164,19 @@ body{
 #amarillo:hover {
     background-color: #fcf966;
 }
-.Botonesadcionales{
+.Botonesadicionales {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espacio entre los botones adicionales */
-    margin-top: 20px; /* Agregar margen superior */
+    gap: 5px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#instrucciones{
+#instrucciones, #score, #reiniciarJuego {
     background-color: #f36eb0;
     color: #131212;
     border: 1px solid #131212;
@@ -180,22 +184,31 @@ body{
     height: 50px;
     width: 150px;
     box-shadow: 0 2px #999;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-}
-#instrucciones:hover{
+#instrucciones:hover, #score:hover, #reiniciarJuego:hover {
     background-color: #f0ccde;
 }
-#score{
-    background-color: #f36eb0;
-    color: #131212;
-    border-radius: 15px;
-    border: 1px solid #131212;
-    height: 50px;
-    width: 150px;
-    box-shadow: 0 2px #999;
+
+@media (max-width: 768px) {
+    #instrucciones, #score, #reiniciarJuego {
+        width: 120px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
 }
-#score:hover{
-    background-color: #f0ccde;
+
+@media (max-width: 480px) {
+    #instrucciones, #score, #reiniciarJuego {
+        width: 100px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
 }
 .modal{
     position: absolute;
@@ -233,6 +246,4 @@ body{
     margin-top: 10px;
 }
 
-
-/* Ahora vamos a darle estilo a la ventana modal (login)*/
 

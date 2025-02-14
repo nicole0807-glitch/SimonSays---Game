@@ -4,7 +4,7 @@ document.getElementById('score').addEventListener('click', function() {
     tbody.innerHTML = ''; // Limpiar tabla antes de mostrar
 
     // Obtener y ordenar las puntuaciones
-    let scores = obtenerPuntuaciones();
+    /*let scores = obtenerPuntuaciones();*/
 
     // Agregar filas a la tabla
     scores.forEach(entry => {
