@@ -10,7 +10,7 @@ class SimonSays{
     constructor(botonesJuego, botonInicio, round1, botonReiniciar){
         this.round1 = 0;
         this.score = 0;
-        this.totalRounds = 10;
+        this.totalRounds = 3;
         this.posicionUsuario = 0;
         this.secuencia = [];
         this.botones = Array.from(botonesJuego);
