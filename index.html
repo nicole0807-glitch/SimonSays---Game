@@ -27,17 +27,20 @@
 </head>
 <body>
     <div class="encabezado">
-        <h1>Bienvenido Usuario</h1>
-        <h1>SimonSays- Mini Game</h1>
-        <h2>Presiona "Jugar" para empezar el juego</h2>
-        <h2>Round: <span data-round="0">0</span></h2>
+        <h1 id="nombreUsuario"></h1>
+        <a href="login.html"><button id="Cambiarusuario"><b>Cambiar Usuario</b></button></a>
+        <h2>SimonSays- Mini Game</h2>
+        <h3>Presiona "Jugar" para empezar el juego</h3>
+        <h3>Round: <span id="valorronda"data-round="0">0</span></h3>
         <div id="Tiempojuego">
             <img src="./img/clock_icon-icons.com_54407 (1).svg" id="Timericon"alt="Foto reloj"> 
-            <h2 id="TimerDisplay">Time=2s</h2> 
-            <div id="round"></div>
+            <h3 id="TimerDisplay">Time=2s</h3> 
         </div>
-        <button id="botonjugar">Jugar</button>
+            <button id="botonjugar"><b>Jugar</b></button>
+        </div>
+        
     </div>
+    
     <div class="Botones">
             <div class="Boton rojo"id="rojo">1</div>
             <div class="Boton azul"id="azul">2</div>
@@ -50,6 +53,66 @@
         <br>
         <button name="Ver Score"id="score">Score</button>
     </div>  
+
+    <dialog id="modalUsuario" class = "modal">
+        <div class="modal-content">
+            <h2>Ingresa tu nombre</h2>
+            <form method="dialog">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                    <button id="guardar">Guardar</button>
+            </form>
+        </div>
+    </dialog>
+
+    <dialog id="modalInstrucciones" class="modal">
+        <div class="modal-content">
+            <h2>Instrucciones del Juego</h2>
+            <p><b>Simon Says</b> es un desafío de memoria en el que el jugador debe memorizar
+                y repetir una secuencia de colores que se muestra en pantalla.
+                Al inicio, la secuencia consta de un único color, y el jugador debe 
+                replicarla de manera precisa. Cada vez que el jugador acierta, 
+                la secuencia se extiende agregando un nuevo color, incrementando 
+                así el nivel de dificultad. El juego concluye cuando el jugador 
+                falla al reproducir la secuencia correctamente.</p>
+                <button id ="cerrarInstrucciones">Cerrar</button>
+        </div>
+    </dialog>
+    <button id="reiniciarJuego">Reiniciar</button>
+
+    <dialog id="modalScore" class="modal">
+        <div class="modal-content">
+            <h2>Score</h2>
+            <p>Puntuaciones recientes</p>
+            <table id="tablaScore">
+                <thead>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+            </table>
+            <button id ="cerrarScore">cerrar</button>
+        </div>
+    </dialog>
+
     <script src="script.js"></script>
+    <script src="modal.js"></script>
+    <script src="storage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        //Obtén el nombre de usuario de la URL
+        const username = localStorage.getItem('username');
+        // Muestra el nombre de usuario en la página
+        if (username) {
+            document.getElementById('nombreUsuario').textContent = `Bienvenido ${username}`;
+        } else {
+            document.getElementById('nombreUsuario').textContent = 'Jugador: Anónimo';
+        }
+    </script>
+
 </body>
 </html>
