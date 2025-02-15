@@ -33,6 +33,9 @@ class SimonSays{
         ];
         }
 
+    showModalScore(){
+        modalScore.showModal();
+    }
 
     init(){
         this.display.botonInicio.onclick = () => this.comenzarJuego();
@@ -128,22 +131,25 @@ class SimonSays{
 
        
     altenarBotones(boton){
-        boton.classList.toggle('active'); //para que se vea el cambio de color osea que hay que acomodar en el css
+        boton.classList.toggle('active'); 
     }
 
     juegoPerdido(){
         this.sonidoError.play();
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
+        this.valorRondaElement.textContent = "Perdiste 😢";
+        this.valorRondaElement.setAttribute('data-round', "Perdiste 😢");
         const username = localStorage.getItem('username');
         const score = this.round1;
         const listaScore = JSON.parse(localStorage.getItem('list')) || [];
         listaScore.push({ username: username, score: score });
         localStorage.setItem('list', JSON.stringify(listaScore));
         this.actualizarTablaScore();
+        this.showModalScore();
     }
 
-    //revisar clase ganador para que nos funcione para crear lo del score o agregar alguna animacion que indique que gano
+
     juegoGanado(){
         this.display.botonInicio.disabled = false;
         this.botonesBloqueados = true;
@@ -161,6 +167,7 @@ class SimonSays{
         listaScore.push({ username: username, score: score });   
         localStorage.setItem('list', JSON.stringify(listaScore));   
         this.actualizarTablaScore();
+        this.showModalScore();
     }
     actualizarTablaScore() {
         
