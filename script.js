@@ -170,17 +170,23 @@ class SimonSays{
         this.showModalScore();
     }
     actualizarTablaScore() {
-        
-        const listaScore = JSON.parse(localStorage.getItem('list')) || [];
-        listaScore.sort((a, b) => b.score - a.score);
-    
-        const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
-    
-        listaScore.forEach(item => {
-            const fila = document.createElement('tr');
-            fila.innerHTML = `<td>${item.username}</td>    <td>${item.score}</td>`;
-            tablaScore.appendChild(fila);
-        });
-    }}
+    const listaScore = JSON.parse(localStorage.getItem('list')) || [];
+    listaScore.sort((a, b) => b.score - a.score);
+    const tablaScore = document.getElementById('tablaScore').getElementsByTagName('tbody')[0];
+    tablaScore.innerHTML = '';
+    listaScore.forEach((item, index)=> {
+        const fila = document.createElement('tr');
+        if(index === 0){
+            fila.innerHTML= `
+            <td>${item.username}</td>
+            <td>${item.score} <span style="color: green; font-weight: bold;">(Mayor puntaje)</span></td> `;
+        } else{
+        fila.innerHTML = `
+            <td>${item.username}</td>
+            <td>${item.score}</td> `;
+        }
+        tablaScore.appendChild(fila);
+        })
+            }}
 const simon = new SimonSays(botonesJuego, botonInicio, round1, botonReiniciar);
 simon.init();
